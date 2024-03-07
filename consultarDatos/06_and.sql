@@ -1,6 +1,6 @@
 /*
 AND
-Claro, el operador AND se utiliza en SQL para combinar múltiples condiciones en una cláusula WHERE.
+El operador AND se utiliza en SQL para combinar múltiples condiciones en una cláusula WHERE.
 Cuando utilizas AND, ambas condiciones deben ser verdaderas para que se seleccione una fila en el conjunto de resultados
 */
 
