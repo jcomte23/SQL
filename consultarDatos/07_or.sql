@@ -1,5 +1,6 @@
 /*
 OR
+
 El operador OR se utiliza en SQL para combinar múltiples condiciones en una cláusula WHERE, 
 permitiendo que al menos una de las condiciones sea verdadera para que se seleccione una fila en el conjunto de resultados
 */

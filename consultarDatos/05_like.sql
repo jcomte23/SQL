@@ -1,5 +1,6 @@
 /*
 LIKE
+
 es un operador en SQL que se utiliza junto con la cláusula WHERE para buscar patrones en valores de texto.
 Este operador es útil cuando deseas buscar valores que coincidan con un cierto patrón de caracteres en una columna de texto.
 */

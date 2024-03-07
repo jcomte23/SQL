@@ -1,5 +1,6 @@
 /*
 WHERE
+
 Es una cláusula en SQL que se utiliza para filtrar filas de una tabla según un criterio específico.
 Permite especificar una condición que debe cumplir cada fila para ser incluida en los resultados de
 la consulta

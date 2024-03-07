@@ -1,5 +1,6 @@
 /*
 ORDER BY
+
 es una cláusula en SQL que se utiliza para ordenar el conjunto de resultados de una consulta según una o más columnas.
 Puedes especificar el orden en el que deseas ordenar las filas, ya sea ascendente (ASC) o descendente (DESC).
 */
