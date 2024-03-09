@@ -1,6 +1,6 @@
 <h1 align="center">SQL</h1>
 
-<p align="center"><img src="https://th.bing.com/th/id/OIP.SFwbmiOTKTuUGER1gVXX5AHaER?rs=1&pid=ImgDetMain" width="200" alt="logo"></p>
+<p align="center"><img src="https://th.bing.com/th/id/OIP.SFwbmiOTKTuUGER1gVXX5AHaER?rs=1&pid=ImgDetMain" width="600" alt="logo"></p>
 
 <p align="center">Este repositorio está diseñado como una guía completa para aprender SQL desde cero. Desde los conceptos básicos hasta las consultas más avanzadas, aquí encontrarás todo lo que necesitas para dominar el lenguaje de consulta estructurada y gestionar eficazmente bases de datos relacionales.</p>
 
