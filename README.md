@@ -42,4 +42,4 @@ Si tu tienes preguntas o comentarios sobre el proyecto, tu puedes ponerte en con
 
 ## Project status
 
-This project is currently under active development and updates are expected to be released in the near future
+Este proyecto se encuentra actualmente en desarrollo activo y se espera que se publiquen actualizaciones en un futuro próximo.
