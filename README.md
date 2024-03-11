@@ -34,9 +34,9 @@
    3306
    ```
 
-## Authors
+## Autor
 
-This project was created by **[Javier Cómbita Téllez](https://github.com/jcomte23)**. 
+Este proyecto fue creado por **[Javier Cómbita Téllez](https://github.com/jcomte23)**. 
 
 If you have any questions or comments about the project, you can contact Javier Cómbita at <a href="mailto:jcomte23@outlook.com" target="_blank">Jcomte23@outlook.com</a>
 
