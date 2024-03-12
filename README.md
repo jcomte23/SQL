@@ -40,6 +40,6 @@ Este proyecto fue creado por **[Javier Cómbita Téllez](https://github.com/jcom
 
 Si tu tienes preguntas o comentarios sobre el proyecto, tu puedes ponerte en contacto mediante este correo: <a href="mailto:jcomte23@outlook.com" target="_blank">Jcomte23@outlook.com</a>
 
-## Project status
+## Estado del proyecto
 
 Este proyecto se encuentra actualmente en desarrollo activo y se espera que se publiquen actualizaciones en un futuro próximo.
