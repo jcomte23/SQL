@@ -52,17 +52,27 @@ La sintaxis `FOREIGN KEY (publicacion_id) REFERENCES publicaciones(id)` le dice 
 
 ---
 
-## El comportamiento: ON DELETE y ON UPDATE
+## El comportamiento ante Cambios: ON DELETE y ON UPDATE
 
-¿Qué pasa si tienes una publicación con 10 comentarios y decides borrar la publicación? Aquí es donde entra la magia de las reglas de acción.
+¿Qué pasa si tienes una publicación con 10 comentarios y decides eliminarla o cambiarle su `id`? Aquí es donde entran las reglas de acción o de integridad referencial. Puedes configurarlas de las siguientes maneras:
 
-### `ON DELETE CASCADE` (Borrado en Cascada)
-Si eliminas la publicación (el padre), la base de datos **automáticamente eliminará todos los comentarios** asociados a ella. 
-Es extremadamente útil para no dejar "datos huérfanos" (comentarios fantasmas de un post que ya no existe).
+### 1. `CASCADE` (En Cascada)
+Es la acción automática que se propaga a los hijos.
+* **`ON DELETE CASCADE`**: Si eliminas la publicación (el padre), la base de datos **automáticamente eliminará** todos sus comentarios (los hijos). Es ideal para no dejar "datos basura" u huérfanos.
+* **`ON UPDATE CASCADE`**: Si cambias el `id` de la publicación (ej. de `1` a `99`), la base de datos actualizará todos los `publicacion_id` de los comentarios a `99`.
 
-### `ON UPDATE CASCADE` (Actualización en Cascada)
-Si por alguna razón cambiaras el `id` de una publicación (ej. de `id = 1` a `id = 99`), la base de datos irá automáticamente a la tabla de comentarios y cambiará todos los `publicacion_id` de `1` a `99`. 
+### 2. `RESTRICT` (Restringir)
+Es una barrera de seguridad estricta para evitar accidentes.
+* Si intentas borrar o actualizar una publicación que ya tiene comentarios, la base de datos **detendrá la operación inmediatamente y te lanzará un error**.
+* Te obliga a ir tú mismo, borrar primero los comentarios manualmente, y solo entonces te permitirá borrar la publicación padre.
 
-> **Otras opciones populares:**
-> * `RESTRICT` (o no poner nada, que es el valor por defecto): La base de datos te lanzará un error y **no te dejará** borrar la publicación si esta tiene comentarios. Te obliga a borrar los comentarios primero manualmente.
-> * `SET NULL`: Si borras la publicación, no se borran los comentarios, pero su columna `publicacion_id` pasará a valer `NULL` (quedan huérfanos pero no se eliminan).
+### 3. `NO ACTION` (Sin Acción)
+En MySQL, se comporta en la práctica de manera **idéntica a `RESTRICT`**.
+* Detiene el borrado o la actualización si existen registros dependientes. La diferencia técnica (en SQL estándar) es que `NO ACTION` permite revisar las reglas al final de una transacción, pero MySQL lo procesa igual que `RESTRICT`.
+* **Dato importante:** Si no escribes nada en la creación de tu llave foránea, este es el comportamiento por defecto de la base de datos.
+
+### 4. `SET NULL` (Asignar Nulo)
+Es la opción para dejar "huérfanos reconocidos".
+* **`ON DELETE SET NULL`**: Si borras la publicación, los comentarios **no se eliminan**. En cambio, el valor de su columna `publicacion_id` pasará a ser `NULL`.
+* **Caso de uso estrella:** Imagina una tabla `empleados` y `computadoras`. Si borras a un empleado, no vas a destruir la computadora; simplemente el campo `empleado_id` de esa compu queda en `NULL` indicando que está libre para asignarse a otro.
+* *(Nota: Para que esto funcione, la columna de la llave foránea debe permitir explícitamente valores nulos).*
