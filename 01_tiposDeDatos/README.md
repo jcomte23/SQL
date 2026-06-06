@@ -77,4 +77,39 @@ Estos tipos de datos son ideales cuando tienes una columna que solo puede conten
 
 > **Nota:** `ENUM` es excelente para forzar reglas a nivel de base de datos. Por ejemplo, una columna definida como `talla ENUM('S', 'M', 'L')` no permitirá que nadie inserte `'XL'`. Sin embargo, una advertencia: si tu lista de opciones va a cambiar frecuentemente en el futuro, suele ser mejor crear una tabla separada en lugar de usar `ENUM`.
 
+## Tipos de Datos Binarios (BLOB)
 
+Los tipos BLOB (*Binary Large Object*) se utilizan para almacenar datos binarios en bruto. Es común encontrárselos en sistemas antiguos o "legacy".
+
+| Tipo         | Tamaño máximo | Guarda          | Uso típico     |
+| ------------ | ------------- | --------------- | -------------- |
+| `TINYBLOB`   | 255 bytes     | binario pequeño | iconos         |
+| `BLOB`       | 65 KB         | datos binarios  | imágenes, PDFs |
+| `MEDIUMBLOB` | 16 MB         | binario mediano | documentos     |
+| `LONGBLOB`   | 4 GB          | binario enorme  | videos grandes |
+
+> **Nota:** **¿Cuándo usarlo y cuándo no?** Aunque la base de datos permite guardar archivos como imágenes o videos usando `BLOB`, en el desarrollo de software moderno esto se considera una **mala práctica**. Hacerlo hace que la base de datos crezca desproporcionadamente, ralentiza las consultas y hace que los respaldos (backups) sean enormes.
+> **La mejor práctica** actual es guardar los archivos en un servidor de almacenamiento externo (como la carpeta de un servidor, Amazon S3, etc.) y en la base de datos usar un simple `VARCHAR` para guardar **la ruta o la URL** de donde vive ese archivo.
+
+## Tipos de Datos Estructurados (JSON)
+
+En las bases de datos modernas (como MySQL 5.7+ o PostgreSQL), es posible almacenar documentos JSON de manera nativa. Esto te brinda la flexibilidad de una base de datos NoSQL (como MongoDB) dentro de tu base de datos SQL.
+
+| Tipo   | Guarda                     | Uso típico                              |
+| ------ | -------------------------- | --------------------------------------- |
+| `JSON` | Objetos y arreglos en JSON | configuraciones, datos sin esquema fijo |
+
+> **Nota:** La ventaja gigante de usar la columna `JSON` frente a guardar el texto en un `LONGTEXT`, es que la base de datos valida que el formato sea correcto. Pero lo más importante: **te permite hacer consultas SQL para buscar o modificar datos por dentro del objeto**. Por ejemplo, puedes hacer una consulta para buscar únicamente los registros donde la propiedad `tema` dentro de la columna JSON sea igual a `"oscuro"`.
+
+## Tipos Geográficos y Espaciales (GIS)
+
+Utilizados para almacenar información de geolocalización, cartografía y geometría en aplicaciones que requieren cálculos sobre mapas o terrenos.
+
+| Tipo         | Guarda              | Uso típico |
+| ------------ | ------------------- | ---------- |
+| `POINT`      | coordenada (X, Y)   | GPS, ubicaciones |
+| `LINESTRING` | ruta o línea        | caminos, trayectos |
+| `POLYGON`    | área cerrada        | zonas, delimitaciones territoriales |
+| `GEOMETRY`   | cualquier geometría | genérico   |
+
+> **Nota:** ¿Por qué usar estos tipos en lugar de guardar la latitud y longitud en dos columnas numéricas separadas? Porque las bases de datos incluyen funciones matemáticas espaciales optimizadas. Puedes hacer consultas complejas y súper eficientes como: *"Encuentra todos los restaurantes (POINT) que estén dentro de este barrio (POLYGON)"* o *"Calcula la distancia exacta entre dos ciudades"*.
